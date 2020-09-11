@@ -83,15 +83,7 @@ Emails, text messages, and other forms of online communication can all be broken
  You can't really send SMS messages straight to phones because they fall under different providers' domains, but sending SMTP is more simple. The S.E.T tried to use an old, open sourced library that goes directly through a registered SMTP account (email account) to send the information itself. Modern email accounts, however, recognize this traffic as sketchy and blocks it. I tried to connect to a gmail account using that method, and this was the result:
 
  ![FailedAttempt.png](resources/failedAttempt.png)
-
- So I looked for a workaround, and found the gmail developer api. This lets you connect to gmail's servers using a credentials key, and send the SMTP message from gmail's servers, not from your computer.
-
- ![texterDiagram.png](resources/texterDiagram.png)
-
- ### Imperfections / other options
-
- As is the case with any work-around, this solution is limited. There is no way to confirm that your message was delivered, or that it was delivered to the correct person. They can respond, but sometimes the email sends with the text as an attachment, which is annoying. If somebody wants to automate that process (the same library has the necessary tools), send it my way I'll post it here. There are a few other options. You can use a third party SMS gateway service such as [Twilio](https://twilio.com). Features such as these tend to be either unreliable or not free, but they still do the trick.
-
+ 
  Courtesy of [Soups71](https://github.com/Soups71), I learned about a way to bypass the spam protection on gmail. You can go to https://myaccount.google.com/lesssecureapps?pli=1 and turn off a setting that blocks Google's self-deemed _"less secure apps"_ from accessing your email. Doing so allows you to use the _smtplib_ library with some success. You can execute the following code to send an email
 
  ![smtplib](resources/smtpObj.png)
@@ -100,7 +92,15 @@ Emails, text messages, and other forms of online communication can all be broken
 
  ![smtplib-failed](resources/smtpLib-failed.PNG)
 
- *** I blurred out relevant information for my logins, if you want to see the whole page it's in chapter 18 of [the book](https://automatetheboringstuff.com/). 
+ *** I blurred out relevant information for my logins, if you want to see the whole page it's in chapter 18 of [the book](https://automatetheboringstuff.com/).
+
+ So I looked for a workaround, and found the gmail developer api. This lets you connect to gmail's servers using a credentials key, and send the SMTP message from gmail's servers, not from your computer.
+
+ ![texterDiagram.png](resources/texterDiagram.png)
+
+ ### Imperfections / other options
+
+ As is the case with any work-around, this solution is limited. There is no way to confirm that your message was delivered, or that it was delivered to the correct person. They can respond, but sometimes the email sends with the text as an attachment, which is annoying. If somebody wants to automate that process (the same library has the necessary tools), send it my way I'll post it here. There are a few other options. You can use a third party SMS gateway service such as [Twilio](https://twilio.com). Features such as these tend to be either unreliable or not free, but they still do the trick. 
 
  ### Final thoughts
 
